@@ -1,7 +1,13 @@
+import os
+from dotenv import load_dotenv
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, url_for, request
 from flask_sqlalchemy import SQLAlchemy 
 from datetime import datetime
+
+load_dotenv()
+PORT = os.getenv('PORT')
+HOST = os.getenv('HOST')
 
 app = Flask(__name__)
 
@@ -56,4 +62,4 @@ def register():
     return render_template("register.html", title="Регистрация")
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(host=HOST, port=PORT, debug=True)
